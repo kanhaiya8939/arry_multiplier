@@ -1,0 +1,98 @@
+
+//half adder code 
+module half_adder(a,b,sum,carry);
+input a,b;
+output sum,carry;
+
+assign sum = a^b;
+assign carry = a&b;
+endmodule
+
+
+// fulladdercode 
+
+module full_adder(a,b,cin,sum,cout);
+input a,b,cin;
+output sum,cout;
+
+assign sum = a^b^cin;
+  assign cout = (a&&b) ||(cin&&(a^b));
+
+endmodule
+
+
+module fourbit_multiplier(a,b,p);
+input [3:0]a;
+input [3:0]b;
+output [7:0]p;
+wire s1;
+wire s2;
+wire s3;
+wire s4;
+wire s5;
+wire s6;
+wire s7;
+wire s8;
+wire s9;
+wire s10;
+wire s11;
+wire s12;
+wire s13;
+wire s14;
+wire s15;
+wire s16;
+wire s17;
+wire s18;
+wire s19;
+wire s20;
+wire s21;
+wire s22;
+wire c1;
+wire c2;
+wire c3;
+wire c4;
+wire c5;
+wire c6;
+wire c7;
+wire c8;
+wire c9;
+wire c10;
+assign s1 = a[0]&b[0];
+
+assign p[0] = s1;
+assign s2 = a[1]&b[0];
+assign s3 = a[0]&b[1];
+half_adder h1(.a(s2),.b(s3),.sum(p[1]),.carry(c1));
+assign s4 = a[2]&b[0];
+assign s5 = a[1]&b[1];
+full_adder f1(.a(s4),.b(s5),.cin(c1),.sum(s6),.cout(c2));
+assign s7=a[0]&b[2];
+half_adder h2(.a(s6),.b(s7),.sum(p[2]),.carry(c3));
+assign s8 = a[3]&b[0];
+assign s9 = a[2]&b[1];
+assign s12 = a[1]&b[2];
+assign s13 = a[0]&b[3];
+assign s14 = a[3]&b[1];
+assign s16 = a[2]&b[2];
+assign s18 = a[1]&b[3];
+assign s19 = a[3]&b[2];
+assign s21 = a[2]&b[3];
+assign s22 = a[3]&b[3];
+full_adder f2(.a(s8),.b(s9),.cin(c2),.sum(s10),.cout(s11));
+full_adder f3(.a(s10),.b(s12),.cin(c3),.sum(s13),.cout(c4));
+half_adder h3(.a(s14),.b(s13),.sum(p[3]),.carry(c5));
+half_adder h4(.a(s14),.b(s11),.sum(s15),.carry(c6));
+full_adder f4(.a(s16),.b(s15),.cin(c4),.sum(s17),.cout(c7));
+full_adder f5(.a(s18),.b(s17),.cin(c5),.sum(p[4]),.cout(c8));
+full_adder f6(.a(s19),.b(c7),.cin(c6),.sum(s20),.cout(c9));
+full_adder f7(.a(s20),.b(s21),.cin(c8),.sum(p[5]),.cout(c10));
+full_adder f8(.a(s22),.b(s19),.cin(c10),.sum(p[6]),.cout(p[7]));
+
+endmodule
+
+
+
+
+
+
+
